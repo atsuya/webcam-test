@@ -1,0 +1,8 @@
+{
+    "name": "webcam-test"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "websocket.io": "0.1.2"
+  }
+}

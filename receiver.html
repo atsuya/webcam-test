@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+  <head>
+    <title>webcamera sender</title>
+    <script>
+    var socket
+      , image;
+
+    window.onload = function() {
+      image = document.getElementById('image');
+
+      socket = new WebSocket('ws://localhost:8000');
+      socket.onmessage = function(event) {
+        image.src = event.data;
+      };
+    }
+    </script>
+  </head>
+  <body>
+    <h1>webcamera test</h1>
+    <img id="image" width="300" height="300" />
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+  <head>
+    <title>webcamera sender</title>
+    <script>
+    var video
+      , heading
+      , socket
+      , canvas
+      , canvasContext;
+
+    window.onload = function() {
+      video = document.getElementsByTagName('video')[0], 
+      heading = document.getElementsByTagName('h1')[0];
+      canvas = document.getElementById('canvasCamera');
+      canvasContext = canvas.getContext('2d');
+
+      socket = new WebSocket('ws://localhost:8000');
+      socket.onopen = function() {
+        setUpVideo();
+      };
+    }
+
+    function setUpVideo() {
+      if (navigator.getUserMedia) {
+        navigator.getUserMedia('video', successCallback, errorCallback);
+
+        function successCallback( stream ) {
+          video.src = stream;
+
+          sendSnapshot();
+        }
+
+        function errorCallback( error ) {
+          heading.textContent = "An error occurred: [CODE " + error.code + "]";
+        }
+      } else {
+        heading.textContent = "Native web camera streaming is not supported in this browser!";
+      }
+    }
+
+    function sendSnapshot() {
+      canvasContext.drawImage(video, 0, 0, canvas.width, canvas.height);
+      socket.send(canvas.toDataURL());
+      //console.log('sending!');
+
+      window.setTimeout(sendSnapshot, 50);
+    }
+    </script>
+  </head>
+  <body>
+    <h1>webcamera test</h1>
+    <video autoplay width="500" height="500"></video>
+    <canvas id="canvasCamera" width="300" height="300" style="display: none;">Canvas Not Support</canvas>
+  </body>
+</html>
