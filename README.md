@@ -1,6 +1,6 @@
 # Webcam Test
 
-This is an example to demonstrate a webcam streaming only using javascript. It accesses webcam using `getUserMedia` api to capture an image from the webcam, sends it to server, and then receivers receive the image. Because the sender does it very frequently, it looks like it is streaming a video.
+This is an example to demonstrate a webcam streaming only using javascript. It accesses webcam using `getUserMedia` api to capture an image, sends it to server, and then receiver receives the image. Because the sender does it very frequently, it looks like it is streaming a video.
 
 
 ## Prepare
