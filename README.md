@@ -7,6 +7,8 @@ This is an example to demonstrate a webcam streaming only using javascript. It a
 
 You need this [specific build of Opera](http://dev.opera.com/articles/view/labs-more-fun-using-the-web-with-getusermedia-and-native-pages/) that supports `getUserMedia` api to access webcam. After installing it, two setting must be updated. Go to `about:config` and enable `Security Prefs` -> `Allow Camera to To Canvas Copy`, and `User Prefs` -> `Enable WebSockets`.
 
+Oh, and you need node.js installed.
+
 
 ## How to Run
 
