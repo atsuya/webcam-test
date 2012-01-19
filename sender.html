@@ -21,11 +21,15 @@
     }
 
     function setUpVideo() {
-      if (navigator.getUserMedia) {
-        navigator.getUserMedia('video', successCallback, errorCallback);
+      if (navigator.getUserMedia || navigator.webkitGetUserMedia) {
+        if (navigator.getUserMedia) {
+          navigator.getUserMedia('video', successCallback, errorCallback);
+        } else {
+          navigator.webkitGetUserMedia('video,audio', successCallback, errorCallback);
+        }
 
         function successCallback( stream ) {
-          video.src = stream;
+          video.src = (navigator.getUserMedia ? stream : window.webkitURL.createObjectURL(stream));
 
           sendSnapshot();
         }
